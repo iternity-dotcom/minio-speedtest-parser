@@ -1,0 +1,364 @@
+{
+    "object": {
+        "objectSize": 67108864,
+        "threads": 36,
+        "PUT": {
+            "perf": {
+                "throughput": 1067030937,
+                "objectsPerSec": 15,
+                "responseTime": {
+                    "avg": 2537573008,
+                    "p50": 2331927584,
+                    "p75": 2955391437,
+                    "p95": 4267496561,
+                    "p99": 5292552089,
+                    "p999": 5605919409,
+                    "l5p": 4900616257,
+                    "s5p": 1268894895,
+                    "max": 5605919409,
+                    "min": 1152721365,
+                    "sdev": 884058042,
+                    "range": 4453198044
+                }
+            },
+            "servers": [
+                {
+                    "endpoint": "http://ecs3-dc2-testcluster1:9011",
+                    "perf": {
+                        "throughput": 543581798,
+                        "objectsPerSec": 8
+                    }
+                },
+                {
+                    "endpoint": "http://ecs3-dc2-testcluster2:9011",
+                    "perf": {
+                        "throughput": 523449139,
+                        "objectsPerSec": 7
+                    }
+                }
+            ]
+        },
+        "GET": {
+            "perf": {
+                "throughput": 2576980377,
+                "objectsPerSec": 38,
+                "responseTime": {
+                    "avg": 1194667180,
+                    "p50": 1035587335,
+                    "p75": 1408631567,
+                    "p95": 2405098701,
+                    "p99": 2897936694,
+                    "p999": 3122703494,
+                    "l5p": 2780492550,
+                    "s5p": 547304740,
+                    "max": 3122703494,
+                    "min": 273603492,
+                    "sdev": 546826756,
+                    "range": 2849100002
+                },
+                "ttfb": {
+                    "avg": 964438304,
+                    "p50": 829191875,
+                    "p75": 1182496725,
+                    "p95": 1992065368,
+                    "p99": 2389020869,
+                    "p999": 2752043654,
+                    "l5p": 2246483264,
+                    "s5p": 405544293,
+                    "max": 2752043654,
+                    "min": 230266822,
+                    "sdev": 458711848,
+                    "range": 2521776832
+                }
+            },
+            "servers": [
+                {
+                    "endpoint": "http://ecs3-dc2-testcluster1:9011",
+                    "perf": {
+                        "throughput": 1268357529,
+                        "objectsPerSec": 18
+                    }
+                },
+                {
+                    "endpoint": "http://ecs3-dc2-testcluster2:9011",
+                    "perf": {
+                        "throughput": 1308622848,
+                        "objectsPerSec": 19
+                    }
+                }
+            ]
+        }
+    },
+    "network": {
+        "servers": [
+            {
+                "endpoint": "http://ecs3-dc2-testcluster1:9011",
+                "perf": {
+                    "tx": 1173844787,
+                    "rx": 1169250336
+                }
+            },
+            {
+                "endpoint": "http://ecs3-dc2-testcluster2:9011",
+                "perf": {
+                    "tx": 1173005926,
+                    "rx": 1170081399
+                }
+            }
+        ]
+    },
+    "drive": {
+        "servers": [
+            {
+                "endpoint": "http://ecs3-dc2-testcluster1:9011",
+                "perf": [
+                    {
+                        "path": "/minio/disk1/data",
+                        "readThroughput": 141713263,
+                        "writeThroughput": 144497080
+                    },
+                    {
+                        "path": "/minio/disk2/data",
+                        "readThroughput": 138035211,
+                        "writeThroughput": 148479773
+                    },
+                    {
+                        "path": "/minio/disk3/data",
+                        "readThroughput": 135610496,
+                        "writeThroughput": 149404941
+                    },
+                    {
+                        "path": "/minio/disk4/data",
+                        "readThroughput": 125594321,
+                        "writeThroughput": 148632610
+                    },
+                    {
+                        "path": "/minio/disk5/data",
+                        "readThroughput": 145010583,
+                        "writeThroughput": 207108114
+                    },
+                    {
+                        "path": "/minio/disk6/data",
+                        "readThroughput": 133960972,
+                        "writeThroughput": 137110668
+                    },
+                    {
+                        "path": "/minio/disk7/data",
+                        "readThroughput": 137727853,
+                        "writeThroughput": 139774953
+                    },
+                    {
+                        "path": "/minio/disk8/data",
+                        "readThroughput": 133504831,
+                        "writeThroughput": 141023160
+                    },
+                    {
+                        "path": "/minio/disk9/data",
+                        "readThroughput": 245959369,
+                        "writeThroughput": 244562465
+                    },
+                    {
+                        "path": "/minio/disk10/data",
+                        "readThroughput": 200536544,
+                        "writeThroughput": 242633951
+                    },
+                    {
+                        "path": "/minio/disk11/data",
+                        "readThroughput": 200121714,
+                        "writeThroughput": 234517391
+                    },
+                    {
+                        "path": "/minio/disk12/data",
+                        "readThroughput": 235930236,
+                        "writeThroughput": 263026081
+                    },
+                    {
+                        "path": "/minio/disk13/data",
+                        "readThroughput": 217193150,
+                        "writeThroughput": 243117751
+                    },
+                    {
+                        "path": "/minio/disk14/data",
+                        "readThroughput": 222469621,
+                        "writeThroughput": 247836854
+                    },
+                    {
+                        "path": "/minio/disk15/data",
+                        "readThroughput": 211849674,
+                        "writeThroughput": 252036891
+                    },
+                    {
+                        "path": "/minio/disk16/data",
+                        "readThroughput": 202450323,
+                        "writeThroughput": 244479639
+                    },
+                    {
+                        "path": "/minio/disk17/data",
+                        "readThroughput": 226430277,
+                        "writeThroughput": 235553070
+                    },
+                    {
+                        "path": "/minio/disk18/data",
+                        "readThroughput": 228799013,
+                        "writeThroughput": 227767167
+                    },
+                    {
+                        "path": "/minio/disk19/data",
+                        "readThroughput": 187502602,
+                        "writeThroughput": 223295123
+                    },
+                    {
+                        "path": "/minio/disk20/data",
+                        "readThroughput": 226218705,
+                        "writeThroughput": 225703403
+                    },
+                    {
+                        "path": "/minio/disk21/data",
+                        "readThroughput": 217631852,
+                        "writeThroughput": 223803613
+                    },
+                    {
+                        "path": "/minio/disk22/data",
+                        "readThroughput": 219904682,
+                        "writeThroughput": 260513651
+                    },
+                    {
+                        "path": "/minio/disk23/data",
+                        "readThroughput": 217339973,
+                        "writeThroughput": 225584658
+                    },
+                    {
+                        "path": "/minio/disk24/data",
+                        "readThroughput": 219978036,
+                        "writeThroughput": 258905806
+                    }
+                ]
+            },
+            {
+                "endpoint": "http://ecs3-dc2-testcluster2:9011",
+                "perf": [
+                    {
+                        "path": "/minio/disk1/data",
+                        "readThroughput": 148238198,
+                        "writeThroughput": 149771551
+                    },
+                    {
+                        "path": "/minio/disk2/data",
+                        "readThroughput": 129480034,
+                        "writeThroughput": 197029758
+                    },
+                    {
+                        "path": "/minio/disk3/data",
+                        "readThroughput": 133837216,
+                        "writeThroughput": 133879944
+                    },
+                    {
+                        "path": "/minio/disk4/data",
+                        "readThroughput": 140392288,
+                        "writeThroughput": 140355222
+                    },
+                    {
+                        "path": "/minio/disk5/data",
+                        "readThroughput": 133880134,
+                        "writeThroughput": 137117468
+                    },
+                    {
+                        "path": "/minio/disk6/data",
+                        "readThroughput": 139257883,
+                        "writeThroughput": 139263720
+                    },
+                    {
+                        "path": "/minio/disk7/data",
+                        "readThroughput": 126718149,
+                        "writeThroughput": 133007307
+                    },
+                    {
+                        "path": "/minio/disk8/data",
+                        "readThroughput": 140304311,
+                        "writeThroughput": 137895043
+                    },
+                    {
+                        "path": "/minio/disk9/data",
+                        "readThroughput": 244753692,
+                        "writeThroughput": 241133884
+                    },
+                    {
+                        "path": "/minio/disk10/data",
+                        "readThroughput": 220826576,
+                        "writeThroughput": 246076752
+                    },
+                    {
+                        "path": "/minio/disk11/data",
+                        "readThroughput": 246001019,
+                        "writeThroughput": 241880560
+                    },
+                    {
+                        "path": "/minio/disk12/data",
+                        "readThroughput": 242769849,
+                        "writeThroughput": 240675042
+                    },
+                    {
+                        "path": "/minio/disk13/data",
+                        "readThroughput": 237561783,
+                        "writeThroughput": 237394870
+                    },
+                    {
+                        "path": "/minio/disk14/data",
+                        "readThroughput": 208907757,
+                        "writeThroughput": 242495179
+                    },
+                    {
+                        "path": "/minio/disk15/data",
+                        "readThroughput": 217455277,
+                        "writeThroughput": 246237823
+                    },
+                    {
+                        "path": "/minio/disk16/data",
+                        "readThroughput": 230220889,
+                        "writeThroughput": 255910211
+                    },
+                    {
+                        "path": "/minio/disk17/data",
+                        "readThroughput": 250870593,
+                        "writeThroughput": 234360775
+                    },
+                    {
+                        "path": "/minio/disk18/data",
+                        "readThroughput": 208602427,
+                        "writeThroughput": 241241362
+                    },
+                    {
+                        "path": "/minio/disk19/data",
+                        "readThroughput": 242551949,
+                        "writeThroughput": 240291524
+                    },
+                    {
+                        "path": "/minio/disk20/data",
+                        "readThroughput": 206190612,
+                        "writeThroughput": 233790711
+                    },
+                    {
+                        "path": "/minio/disk21/data",
+                        "readThroughput": 215209631,
+                        "writeThroughput": 246136450
+                    },
+                    {
+                        "path": "/minio/disk22/data",
+                        "readThroughput": 244228141,
+                        "writeThroughput": 240981133
+                    },
+                    {
+                        "path": "/minio/disk23/data",
+                        "readThroughput": 236954142,
+                        "writeThroughput": 254794389
+                    },
+                    {
+                        "path": "/minio/disk24/data",
+                        "readThroughput": 234269598,
+                        "writeThroughput": 248992101
+                    }
+                ]
+            }
+        ]
+    }
+}

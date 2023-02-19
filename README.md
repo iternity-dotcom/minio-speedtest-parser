@@ -1,2 +1,3 @@
 # minio-speedtest-parser
-Processes MinIO speedtest .json result files
+Pretty prints a MinIO speedtest .json result file.
+

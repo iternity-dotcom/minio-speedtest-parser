@@ -1,0 +1,65 @@
+NetPerf: ✔
+
+NODE                                    RX              TX
+http://ecs3-dc1-testcluster1:9001       2.7 GiB/s       2.7 GiB/s
+http://ecs3-dc1-testcluster2:9001       2.7 GiB/s       2.7 GiB/s
+
+DrivePerf: ✔
+
+NODE                                    PATH                    READ            WRITE
+http://ecs3-dc1-testcluster1:9001       /minio/disk1/data       204 MiB/s       254 MiB/s
+http://ecs3-dc1-testcluster1:9001       /minio/disk2/data       170 MiB/s       201 MiB/s
+http://ecs3-dc1-testcluster1:9001       /minio/disk3/data       195 MiB/s       200 MiB/s
+http://ecs3-dc1-testcluster1:9001       /minio/disk4/data       166 MiB/s       202 MiB/s
+http://ecs3-dc1-testcluster1:9001       /minio/disk5/data       173 MiB/s       212 MiB/s
+http://ecs3-dc1-testcluster1:9001       /minio/disk6/data       164 MiB/s       205 MiB/s
+http://ecs3-dc1-testcluster1:9001       /minio/disk7/data       198 MiB/s       200 MiB/s
+http://ecs3-dc1-testcluster1:9001       /minio/disk8/data       197 MiB/s       200 MiB/s
+http://ecs3-dc1-testcluster1:9001       /minio/disk9/data       205 MiB/s       224 MiB/s
+http://ecs3-dc1-testcluster1:9001       /minio/disk10/data      201 MiB/s       232 MiB/s
+http://ecs3-dc1-testcluster1:9001       /minio/disk11/data      210 MiB/s       223 MiB/s
+http://ecs3-dc1-testcluster1:9001       /minio/disk12/data      228 MiB/s       229 MiB/s
+http://ecs3-dc1-testcluster1:9001       /minio/disk13/data      222 MiB/s       254 MiB/s
+http://ecs3-dc1-testcluster1:9001       /minio/disk14/data      192 MiB/s       230 MiB/s
+http://ecs3-dc1-testcluster1:9001       /minio/disk15/data      219 MiB/s       248 MiB/s
+http://ecs3-dc1-testcluster1:9001       /minio/disk16/data      216 MiB/s       246 MiB/s
+http://ecs3-dc1-testcluster1:9001       /minio/disk17/data      186 MiB/s       212 MiB/s
+http://ecs3-dc1-testcluster1:9001       /minio/disk18/data      168 MiB/s       214 MiB/s
+http://ecs3-dc1-testcluster1:9001       /minio/disk19/data      193 MiB/s       210 MiB/s
+http://ecs3-dc1-testcluster1:9001       /minio/disk20/data      188 MiB/s       208 MiB/s
+http://ecs3-dc1-testcluster1:9001       /minio/disk21/data      206 MiB/s       240 MiB/s
+http://ecs3-dc1-testcluster1:9001       /minio/disk22/data      210 MiB/s       237 MiB/s
+http://ecs3-dc1-testcluster1:9001       /minio/disk23/data      202 MiB/s       232 MiB/s
+http://ecs3-dc1-testcluster1:9001       /minio/disk24/data      186 MiB/s       207 MiB/s
+http://ecs3-dc1-testcluster2:9001       /minio/disk1/data       210 MiB/s       249 MiB/s
+http://ecs3-dc1-testcluster2:9001       /minio/disk2/data       228 MiB/s       246 MiB/s
+http://ecs3-dc1-testcluster2:9001       /minio/disk3/data       196 MiB/s       227 MiB/s
+http://ecs3-dc1-testcluster2:9001       /minio/disk4/data       229 MiB/s       231 MiB/s
+http://ecs3-dc1-testcluster2:9001       /minio/disk5/data       199 MiB/s       258 MiB/s
+http://ecs3-dc1-testcluster2:9001       /minio/disk6/data       209 MiB/s       232 MiB/s
+http://ecs3-dc1-testcluster2:9001       /minio/disk7/data       234 MiB/s       249 MiB/s
+http://ecs3-dc1-testcluster2:9001       /minio/disk8/data       214 MiB/s       250 MiB/s
+http://ecs3-dc1-testcluster2:9001       /minio/disk9/data       164 MiB/s       198 MiB/s
+http://ecs3-dc1-testcluster2:9001       /minio/disk10/data      163 MiB/s       191 MiB/s
+http://ecs3-dc1-testcluster2:9001       /minio/disk11/data      156 MiB/s       196 MiB/s
+http://ecs3-dc1-testcluster2:9001       /minio/disk12/data      184 MiB/s       196 MiB/s
+http://ecs3-dc1-testcluster2:9001       /minio/disk13/data      177 MiB/s       179 MiB/s
+http://ecs3-dc1-testcluster2:9001       /minio/disk14/data      169 MiB/s       173 MiB/s
+http://ecs3-dc1-testcluster2:9001       /minio/disk15/data      166 MiB/s       177 MiB/s
+http://ecs3-dc1-testcluster2:9001       /minio/disk16/data      185 MiB/s       173 MiB/s
+http://ecs3-dc1-testcluster2:9001       /minio/disk17/data      119 MiB/s       129 MiB/s
+http://ecs3-dc1-testcluster2:9001       /minio/disk18/data      146 MiB/s       200 MiB/s
+http://ecs3-dc1-testcluster2:9001       /minio/disk19/data      130 MiB/s       140 MiB/s
+http://ecs3-dc1-testcluster2:9001       /minio/disk20/data      122 MiB/s       132 MiB/s
+http://ecs3-dc1-testcluster2:9001       /minio/disk21/data      125 MiB/s       142 MiB/s
+http://ecs3-dc1-testcluster2:9001       /minio/disk22/data      129 MiB/s       147 MiB/s
+http://ecs3-dc1-testcluster2:9001       /minio/disk23/data      132 MiB/s       140 MiB/s
+http://ecs3-dc1-testcluster2:9001       /minio/disk24/data      145 MiB/s       145 MiB/s
+
+ObjectPerf: ✔
+
+        THROUGHPUT      IOPS
+PUT     1.4 GiB/s       22 objs/s
+GET     4.2 GiB/s       66 objs/s
+
+MinIO 2022-11-17T23:20:09Z, 2 servers, 48 drives, 64 MiB objects, 81 threads
