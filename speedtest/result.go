@@ -34,11 +34,12 @@ type Info struct {
 }
 
 type Result struct {
-	Network Network `json:"network,omitempty"`
-	Drive   Drive   `json:"drive,omitempty"`
-	Object  Object  `json:"object,omitempty"`
-	Client  Client  `json:"client,omitempty"`
-	Version string
+	Version         string
+	Network         Network         `json:"network,omitempty"`
+	Drive           Drive           `json:"drive,omitempty"`
+	Object          Object          `json:"object,omitempty"`
+	Client          Client          `json:"client,omitempty"`
+	SiteReplication SiteReplication `json:"siteReplication,omitempty"`
 }
 
 type Network struct {
@@ -72,6 +73,19 @@ type Object struct {
 	Threads    int   `json:"threads,omitempty"`
 	Put        Put   `json:"PUT,omitempty"`
 	Get        Get   `json:"GET,omitempty"`
+}
+
+type SiteReplication struct {
+	Servers []SiteReplicationServers `json:"servers,omitempty"`
+}
+
+func (s *SiteReplication) IsPresent() bool {
+	return len(s.Servers) > 0
+}
+
+type SiteReplicationServers struct {
+	Endpoint string `json:"endpoint,omitempty"`
+	Perf     Perf   `json:"perf,omitempty"`
 }
 
 func (o *Object) IsPresent() bool {
@@ -109,15 +123,31 @@ func (c Client) Throughput() Bytes {
 }
 
 type Perf struct {
-	Throughput      Bytes        `json:"throughput,omitempty"`
-	ObjectsPerSec   int          `json:"objectsPerSec,omitempty"`
-	ResponseTime    ResponseTime `json:"responseTime,omitempty"`
-	Ttfb            ResponseTime `json:"ttfb,omitempty"`
-	Tx              Bytes        `json:"tx,omitempty"`
-	Rx              Bytes        `json:"rx,omitempty"`
-	Path            string       `json:"path,omitempty"`
-	ReadThroughput  Bytes        `json:"readThroughput,omitempty"`
-	WriteThroughput Bytes        `json:"writeThroughput,omitempty"`
+	Throughput      Bytes         `json:"throughput,omitempty"`
+	ObjectsPerSec   int           `json:"objectsPerSec,omitempty"`
+	ResponseTime    ResponseTime  `json:"responseTime,omitempty"`
+	Ttfb            ResponseTime  `json:"ttfb,omitempty"`
+	Tx              Bytes         `json:"tx,omitempty"`
+	TxTotalDuration time.Duration `json:"txTotalDuration,omitempty"`
+	Rx              Bytes         `json:"rx,omitempty"`
+	RxTotalDuration time.Duration `json:"rxTotalDuration,omitempty"`
+	Path            string        `json:"path,omitempty"`
+	ReadThroughput  Bytes         `json:"readThroughput,omitempty"`
+	WriteThroughput Bytes         `json:"writeThroughput,omitempty"`
+}
+
+func (p *Perf) RxBps() Bytes {
+	if p.RxTotalDuration > 0 {
+		return Bytes(int64(p.Rx) / int64(p.RxTotalDuration.Seconds()))
+	}
+	return p.Rx
+}
+
+func (p *Perf) TxBps() Bytes {
+	if p.TxTotalDuration > 0 {
+		return Bytes(int64(p.Tx) / int64(p.TxTotalDuration.Seconds()))
+	}
+	return p.Tx
 }
 
 type ResponseTime struct {
@@ -146,9 +176,9 @@ func (r *Result) String() string {
 	if r.Network.IsPresent() {
 		fmt.Fprintln(&buf, "NetPerf: ✔")
 		fmt.Fprintln(&buf, "")
-		fmt.Fprintln(&buf, "NODE\t\t\t\t\tRX\t\tTX")
+		fmt.Fprintln(&buf, "NODE\t\t\t\tRX\t\tTX")
 		for _, s := range r.Network.Servers {
-			fmt.Fprintf(&buf, "%s\t%.1f GiB/s\t%.1f GiB/s\n", s.Endpoint, s.Nic.Rx.GiB(), s.Nic.Tx.GiB())
+			fmt.Fprintf(&buf, "%s\t%.1f GiB/s\t%.1f GiB/s\n", s.Endpoint, s.Nic.RxBps().GiB(), s.Nic.TxBps().GiB())
 		}
 		fmt.Fprintln(&buf, "")
 	}
@@ -156,7 +186,7 @@ func (r *Result) String() string {
 	if r.Drive.IsPresent() {
 		fmt.Fprintln(&buf, "DrivePerf: ✔")
 		fmt.Fprintln(&buf, "")
-		fmt.Fprintln(&buf, "NODE\t\t\t\t\tPATH\t\t\tREAD\t\tWRITE")
+		fmt.Fprintln(&buf, "NODE\t\t\t\tPATH\t\t\tREAD\t\tWRITE")
 		for _, server := range r.Drive.Servers {
 			for _, disk := range server.Disks {
 				driveCount++
@@ -182,6 +212,16 @@ func (r *Result) String() string {
 		fmt.Fprintln(&buf, "")
 		fmt.Fprintln(&buf, "ENDPOINT\t\t\t\t\tTX")
 		fmt.Fprintf(&buf, "%s\t%.1f MiB/s\n", r.Client.Endpoint, r.Client.Throughput().MiB())
+	}
+
+	if r.SiteReplication.IsPresent() {
+		fmt.Fprintln(&buf, "SiteReplication: ✔")
+		fmt.Fprintln(&buf, "")
+		fmt.Fprintln(&buf, "ENDPOINT\t\tRX\t\tTX")
+		for _, s := range r.SiteReplication.Servers {
+			fmt.Fprintf(&buf, "%s\t%.1f MiB/s\t%.1f MiB/s\n", s.Endpoint, s.Perf.RxBps().MiB(), s.Perf.TxBps().MiB())
+		}
+		fmt.Fprintln(&buf, "")
 	}
 
 	return buf.String()

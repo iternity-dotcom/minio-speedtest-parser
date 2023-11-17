@@ -1,0 +1,5 @@
+SiteReplication: ✔
+
+ENDPOINT                RX              TX
+http://localhost:9001   253 MiB/s       855 MiB/s
+http://localhost:9003   417 MiB/s       870 MiB/s

@@ -1,0 +1,1 @@
+{"deployment_id":"ea13b072-21da-4c0e-93a7-b75f815b1e83","cluster_name":"master","used_capacity":94372170,"info":{"minio_version":"2023-11-11T08:14:41Z","no_of_server_pools":1,"no_of_servers":2,"no_of_drives":8,"no_of_buckets":1,"no_of_objects":15,"total_drive_space":17095983104,"used_drive_space":480444416}}
