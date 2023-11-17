@@ -1,10 +1,13 @@
 package speedtest
 
 import (
+	"archive/zip"
 	"bytes"
 	"encoding/json"
 	"fmt"
+	"io"
 	"os"
+	"strings"
 	"time"
 )
 
@@ -22,11 +25,20 @@ func (b Bytes) GiB() float64 {
 	return b.MiB() / 1024
 }
 
+type Cluster struct {
+	Info Info `json:"info"`
+}
+
+type Info struct {
+	Version string `json:"minio_version"`
+}
+
 type Result struct {
 	Network Network `json:"network,omitempty"`
 	Drive   Drive   `json:"drive,omitempty"`
 	Object  Object  `json:"object,omitempty"`
 	Client  Client  `json:"client,omitempty"`
+	Version string
 }
 
 type Network struct {
@@ -161,7 +173,7 @@ func (r *Result) String() string {
 		fmt.Fprintf(&buf, "PUT\t%.1f GiB/s\t%d objs/s\n", r.Object.Put.Perf.Throughput.GiB(), r.Object.Put.Perf.ObjectsPerSec)
 		fmt.Fprintf(&buf, "GET\t%.1f GiB/s\t%d objs/s\n", r.Object.Get.Perf.Throughput.GiB(), r.Object.Get.Perf.ObjectsPerSec)
 		fmt.Fprintln(&buf, "")
-		fmt.Fprintf(&buf, "%d servers, %d drives, %.0f MiB objects, %d threads\n", len(r.Network.Servers), driveCount, r.Object.ObjectSize.MiB(), r.Object.Threads)
+		fmt.Fprintf(&buf, "MinIO %s, %d servers, %d drives, %.0f MiB objects, %d threads\n", r.Version, len(r.Network.Servers), driveCount, r.Object.ObjectSize.MiB(), r.Object.Threads)
 		fmt.Fprintln(&buf, "")
 	}
 
@@ -175,6 +187,41 @@ func (r *Result) String() string {
 	return buf.String()
 }
 
+func FromZipFile(zipFile string) (*Result, error) {
+
+	zip, err := zip.OpenReader(zipFile)
+	if err != nil {
+		return nil, err
+	}
+	defer zip.Close()
+	var result *Result
+	var cluster *Cluster
+	for _, f := range zip.File {
+		srcFile, err := f.Open()
+		if err != nil {
+			continue
+		}
+		defer srcFile.Close()
+		b, err := io.ReadAll(srcFile)
+
+		if err != nil {
+			continue
+		}
+		if f.Name == "cluster.info" {
+			cluster, _ = clusterFromJsonByteArray(b)
+		}
+		if strings.HasSuffix(f.Name, "json") {
+			result, _ = FromJsonByteArray(b)
+		}
+
+	}
+	if result != nil {
+		result.Version = cluster.Info.Version
+		return result, nil
+	}
+	return nil, fmt.Errorf("no valid .json file in .zip archive %s", zipFile)
+}
+
 func FromJsonFile(jsonFile string) (*Result, error) {
 	jsonData, err := os.ReadFile(jsonFile)
 	if err != nil {
@@ -185,6 +232,12 @@ func FromJsonFile(jsonFile string) (*Result, error) {
 
 func FromJsonByteArray(jsonData []byte) (*Result, error) {
 	b := &Result{}
+	err := json.Unmarshal(jsonData, b)
+	return b, err
+}
+
+func clusterFromJsonByteArray(jsonData []byte) (*Cluster, error) {
+	b := &Cluster{}
 	err := json.Unmarshal(jsonData, b)
 	return b, err
 }
